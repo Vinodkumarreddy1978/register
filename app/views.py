@@ -14,7 +14,7 @@ def signin(request):
         user=authenticate(username=username,password=password)
         if user is not None:
             login(request,user)
-            return redirect('/chat')
+            return redirect('chat')
         else:
             messages.error(request,"Invalid login credentials")
     return render(request,'login.html')
@@ -25,7 +25,7 @@ def signup(request):
         password=request.POST['password']
         if not User.objects.filter(username=username):
             User.objects.create_user(username=username,email=email,password=password)
-            return redirect('/accounts/login')
+            return redirect('chat')
         else:
             messages.error(request,'user already exists')
     return render(request,'signup.html')
