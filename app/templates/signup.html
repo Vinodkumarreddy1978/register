@@ -1,0 +1,91 @@
+{% extends 'home.html' %}
+{% block main %}
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            .cont1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+}
+
+.signup-form {
+    padding: 12px;
+    border: 2px solid black;
+    border-radius: 30px;
+    background-color: #fafafa;
+    width: 350px;
+    text-align: center;
+}
+
+.input-group {
+    margin-bottom: 10px;
+}
+
+label {
+    display: block;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.signup-button {
+    margin-top: 10px;
+    background-color: #346ae2;
+    color: #fafafa;
+    border-radius: 3px;
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+.login-link a {
+    text-decoration: none;
+    color: #007bff;
+    transition: text-decoration 0.3s, color 0.3s;
+}
+
+.login-link a:hover {
+    text-decoration: underline;
+    color: black;
+}
+
+    </style>
+    </head>
+    <body>
+
+
+<div class="cont1">
+    <div class="container2">
+        <form method="post" class="signup-form">   
+            {% csrf_token %}
+            <div class="input-group">
+                <label for="username">Name:</label>
+                <input type="text" id="username" name="username" required placeholder="Enter your name">
+            </div>
+            <div class="input-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required placeholder="Enter your email">
+            </div>
+            <div class="input-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required placeholder="Enter your password">
+            </div>
+            <button class="signup-button" type="submit">Sign up</button>
+            <p class="login-link"><a href="/accounts/login">Already have an account?</a></p>
+        </form>
+    </div>
+</div>
+</body>
+</html>
+{% endblock %}

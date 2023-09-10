@@ -1,0 +1,67 @@
+{%extends 'home.html'%}
+{%block main%}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Chatbot</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            padding: 20px;
+        }
+        #chat-area {
+            margin: 60px 30%;
+            height: 400px;
+            overflow-y: scroll;
+            border: 20px solid #ddd;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        #user-input {
+            min-width: 40%;
+            max-width: 50%;
+            width: 40%;
+            padding: 10px;
+            margin: 0px 30%;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+    </style>
+    
+</head>
+
+<div id="chat-container">
+
+    <div id="chat-area">
+       
+        {% for date, chat_entries in chat_data.items %}
+        <h6>{{ date }}</h6>
+        <ul>
+            {% for chat in chat_entries %}
+            <div class="user">You:{{chat.umsg}} </div><br>
+
+            <div class="bot">Bot:{{chat.cmsg|safe}} </div><br>
+            
+            {% endfor %}
+        </ul>
+        {% endfor %}
+    </div>
+        <form action="" method="post" class="enter" >
+            {%csrf_token%}
+            <input type="text" name="message" id="user-input" placeholder="Type a message">
+        </form>
+    </div>
+    <script>
+        window.addEventListener('load',
+        function()
+        {
+            input = document.getElementById('user-input').focus();
+            var container=document.getElementById('chat-area');
+            container.scrollTop=container.scrollHeight;
+        }
+        );
+    </script>
+</body>
+</html>
+
+{%endblock%}
